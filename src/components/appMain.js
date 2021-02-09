@@ -3,7 +3,8 @@ import React, { useEffect, useReducer } from "react";
 import waypointReducer from "../reducer/waypointReducer";
 import AltitudeContext from "../context/altitudeContext";
 import FormInput from "./formInput";
-import WaypointList from './waypointList';
+import WaypointList from "./waypointList";
+import { Typography, Container } from "@material-ui/core";
 // material UI imports
 
 const App = () => {
@@ -12,7 +13,7 @@ const App = () => {
     // use effect to load from localstorage and set to state where exists
     const waypointsFromLS = JSON.parse(localStorage.getItem("waypointsFromLS"));
     if (waypointsFromLS) {
-      dispatch({ type: "ADD_FROM_LS", waypointsFromLS, });
+      dispatch({ type: "ADD_FROM_LS", waypointsFromLS });
     }
   }, []);
   // use reducer to mimic redux store and get dispatch
@@ -23,9 +24,14 @@ const App = () => {
   }, [waypoint]);
   return (
     <AltitudeContext.Provider value={{ waypoint, dispatch }}>
-      <FormInput />
-	  <hr></hr>
-	  <WaypointList />
+      <Container>
+        <Typography paragraph align={"center"} variant={"h2"} component={"h2"}>
+          FL Change Calculator
+        </Typography>
+        <FormInput />
+        <hr></hr>
+        <WaypointList />
+      </Container>
     </AltitudeContext.Provider>
   );
 };

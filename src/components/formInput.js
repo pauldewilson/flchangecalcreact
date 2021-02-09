@@ -2,14 +2,7 @@
 import React, { useState, useContext } from "react";
 import AltitudeContext from "../context/altitudeContext";
 // material UI imports
-import {
-  Container,
-  FormControl,
-  FormGroup,
-  Input,
-  Button,
-  Paper,
-} from "@material-ui/core";
+import { FormControl, FormGroup, Input, Button, Grid } from "@material-ui/core";
 // other imports
 import { v4 as uuid } from "uuid";
 
@@ -23,27 +16,28 @@ const FormInput = () => {
   const [waypoint, waypointChange] = useState("");
   const stateChanger = (e) => {
     // function manages state changes
-    const inputValue = e.target.value;
+    let inputValue = e.target.value;
+    console.log(isNaN(inputValue));
     // eslint-disable-next-line default-case
     switch (e.target.name) {
       case "FLstart":
         if ((/^\d*$/.test(inputValue) && inputValue.length < 4) || "") {
-          altStartChange(parseInt(inputValue));
+          altStartChange(inputValue);
         }
         break;
       case "FLEnd":
         if ((/^\d*$/.test(inputValue) && inputValue.length < 4) || "") {
-          altEndChange(parseInt(inputValue));
+          altEndChange(inputValue);
         }
         break;
       case "KIAS":
         if ((/^\d*$/.test(inputValue) && inputValue.length < 4) || "") {
-          kiasChange(parseInt(inputValue));
+          kiasChange(inputValue);
         }
         break;
       case "NauticalMiles":
         if ((/^\d*$/.test(inputValue) && inputValue.length < 4) || "") {
-          nmChange(parseInt(inputValue));
+          nmChange(inputValue);
         }
         break;
       case "WayPoint":
@@ -64,14 +58,14 @@ const FormInput = () => {
     waypointChange("");
     // ensure correct focus is set depending on whether submit or reset
     if (e.target.innerText === "RESET") {
-      e.target.parentNode.parentNode.elements[0].focus();
+      e.target.parentNode.parentNode.parentNode.elements[0].focus();
     } else {
       e.target.elements[0].focus();
     }
   };
   const submitFunc = (e) => {
     e.preventDefault();
-    if ((altStart && altEnd && kias && nm)) {
+    if (altStart && altEnd && kias && nm) {
       dispatch({
         type: "ADD",
         waypoint: {
@@ -79,86 +73,85 @@ const FormInput = () => {
           altEnd,
           kias,
           nm,
-          waypoint,
-          uuid:uuid(),
+          waypoint: waypoint === "" ? "-" : waypoint,
+          uuid: uuid(),
         },
       });
       resetForm(e);
-    } else {
-      console.log("Form invalid");
-    }
+    };
   };
   return (
-    <Container>
-      <h1>Flight Level Change Calculator</h1>
-      <Paper>
-        <form onSubmit={submitFunc}>
-          <FormGroup>
-            <FormControl>
-              <Input
-                autoFocus
-                id={"FLstart"}
-                name={"FLstart"}
-                placeholder={"FL Start (350)"}
-                type={"text"}
-                value={altStart}
-                onChange={stateChanger}
-              />
-            </FormControl>
-            <FormControl>
-              <Input
-                autoFocus
-                id={"FLEnd"}
-                name={"FLEnd"}
-                placeholder={"FL End (050)"}
-                type={"text"}
-                value={altEnd}
-                onChange={stateChanger}
-              />
-            </FormControl>
-            <FormControl>
-              <Input
-                autoFocus
-                id={"KIAS"}
-                name={"KIAS"}
-                placeholder={"KIAS"}
-                type={"text"}
-                value={kias}
-                onChange={stateChanger}
-              />
-            </FormControl>
-            <FormControl>
-              <Input
-                autoFocus
-                id={"NauticalMiles"}
-                name={"NauticalMiles"}
-                placeholder={"Nautical Miles"}
-                type={"text"}
-                value={nm}
-                onChange={stateChanger}
-              />
-            </FormControl>
-            <FormControl>
-              <Input
-                autoFocus
-                id={"WayPoint"}
-                name={"WayPoint"}
-                placeholder={"Waypoint (optional)"}
-                type={"text"}
-                value={waypoint}
-                onChange={stateChanger}
-              />
-            </FormControl>
-          </FormGroup>
-          <Button variant={"contained"} color={"primary"} type={"submit"}>
-            Submit
-          </Button>
-          <Button variant={"text"} type={"reset"} onClick={resetForm}>
-            Reset
-          </Button>
-        </form>
-      </Paper>
-    </Container>
+    <form onSubmit={submitFunc}>
+      <FormGroup>
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
+          <FormControl>
+            <Input
+              autoFocus
+              id={"FLstart"}
+              name={"FLstart"}
+              placeholder={"FL Start (350)"}
+              type={"text"}
+              value={altStart}
+              onChange={stateChanger}
+            />
+          </FormControl>
+          <FormControl>
+            <Input
+              id={"FLEnd"}
+              name={"FLEnd"}
+              placeholder={"FL End (050)"}
+              type={"text"}
+              value={altEnd}
+              onChange={stateChanger}
+            />
+          </FormControl>
+          <FormControl>
+            <Input
+              id={"KIAS"}
+              name={"KIAS"}
+              placeholder={"KIAS"}
+              type={"text"}
+              value={kias}
+              onChange={stateChanger}
+            />
+          </FormControl>
+          <FormControl>
+            <Input
+              id={"NauticalMiles"}
+              name={"NauticalMiles"}
+              placeholder={"Nautical Miles"}
+              type={"text"}
+              value={nm}
+              onChange={stateChanger}
+            />
+          </FormControl>
+          <FormControl>
+            <Input
+              id={"WayPoint"}
+              name={"WayPoint"}
+              placeholder={"Waypoint (optional)"}
+              type={"text"}
+              value={waypoint}
+              onChange={stateChanger}
+            />
+          </FormControl>
+        </Grid>
+      </FormGroup>
+      <br></br>
+      <Grid container direction="column" justify="center" alignItems="center">
+        <Button variant={"contained"} color={"primary"} type={"submit"}>
+          Submit
+        </Button>
+        <Button variant={"text"} type={"reset"} onClick={resetForm}>
+          Reset
+        </Button>
+      </Grid>
+    </form>
   );
 };
 

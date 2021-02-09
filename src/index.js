@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
-import App from './components/appMain';
-
+import App from "./components/appMain";
+import CssBaseLine from "@material-ui/core/CssBaseline";
 
 ReactDOM.render(
   <React.StrictMode>
-   <App />
+    <CssBaseLine />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
