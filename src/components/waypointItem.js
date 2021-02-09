@@ -8,7 +8,7 @@ const WaypointItem = ({ waypointItem }) => {
   const removeItem = () => {
       dispatch({type:"REMOVE_ONE", uuid:waypointItem.uuid})
   };
-  const calc = new DescentCalculator(waypointItem.startAlt,waypointItem.altEnd,waypointItem.kias,waypointItem.n)
+  const calc = new DescentCalculator(waypointItem.altStart,waypointItem.altEnd,waypointItem.kias,waypointItem.nm)
   calc.run();
   return (
     <Card>
@@ -21,6 +21,8 @@ const WaypointItem = ({ waypointItem }) => {
       KIAS: {waypointItem.kias}
       <br></br>
       NM: {waypointItem.altEnd}
+      <br></br>
+      FPM Required: {-calc.fpm_with_speed}
       <br></br>
       <Button variant={"outlined"} color={"secondary"} onClick={removeItem}>X</Button>
     </Card>

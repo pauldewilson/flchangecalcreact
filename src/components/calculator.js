@@ -5,8 +5,8 @@ class DescentCalculator {
     kias = null,
     distance_nm = null
   ) {
-    this.start_alt = start_alt;
-    this.dest_alt = dest_alt;
+    this.start_alt = start_alt*100;
+    this.dest_alt = dest_alt*100;
     this.kias = kias;
     this.distance_nm = distance_nm;
     this.descent_angle = 3;
@@ -59,10 +59,8 @@ class DescentCalculator {
     this._statement_fpm_with_speed();
   }
   run() {
-    console.log("CALC RUNNING");
     this._fpm_distance_and_speed();
     this.generate_print_statements();
-    console.log(this.statement_fpm_with_speed)
   }
 }
 
