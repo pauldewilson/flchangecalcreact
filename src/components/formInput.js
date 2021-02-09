@@ -2,7 +2,11 @@
 import React, { useState, useContext } from "react";
 import AltitudeContext from "../context/altitudeContext";
 // material UI imports
-import { FormControl, FormGroup, Input, Button, Grid } from "@material-ui/core";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 // other imports
 import { v4 as uuid } from "uuid";
 
