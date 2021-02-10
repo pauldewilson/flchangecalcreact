@@ -7,13 +7,19 @@ This is the JavaScript version of [my Python Flask version](https://github.com/p
 #### Tools used
 
 As this was primarily a small project to practice and showcase skills learnt the following was used:
-1. Javascript
-2. React
-a. create-react-app
-b. hooks (useState, useEffect, useReducer, useContext)
-c. material-ui
-3. Mathematics
-a. Custom built calculator (src/components/calculator.js)
+<ol>
+    <li>Javascript</li>
+    <li>React</li>
+        <ul>
+            <li>create-react-app</li>
+            <li>hooks (useState, useEffect, useReducer, useContext)</li>
+            <li>material-ui</li>
+        </ul>
+    <li>Flight Mathematics</li>
+        <ul>
+            <li>Custom built [calculator](src/components/calculator.js)</li>
+        </ul>
+</ol>
 
 #### Sample
 
@@ -21,12 +27,7 @@ a. Custom built calculator (src/components/calculator.js)
 
 ### How to use:
 
-1. Clone this repo
-2. Using terminal in the directoroy: run the command **npm start**
-3. Done, your browser should auto-open
-
-If you do not have npm or Node.js installed on your computer it will not work.
-Please see [this link](https://www.npmjs.com/get-npm) for more.
+This app is hosted at [flcalc.herokuapp.com](https://flcalc.herokuapp.com/) however it is not yet optimised for mobile.
 
 ### License
 Personal or educational use only, not for commercial use. Hosting not permitted.

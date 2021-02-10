@@ -4,6 +4,7 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./components/appMain";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 
+(document.title = "FL Change Calc")()
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseLine />
