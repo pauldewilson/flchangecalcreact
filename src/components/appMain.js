@@ -4,9 +4,7 @@ import waypointReducer from "../reducer/waypointReducer";
 import AltitudeContext from "../context/altitudeContext";
 import FormInput from "./formInput";
 import WaypointList from "./waypointList";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Link from '@material-ui/core/Link';
+import { Typography, Container } from "@material-ui/core";
 // material UI imports
 
 const App = () => {
@@ -29,9 +27,6 @@ const App = () => {
       <Container>
         <Typography paragraph align={"center"} variant={"h2"} component={"h2"}>
           FL Change Calculator
-        </Typography>
-        <Typography align={"center"}>
-        <Link target="_blank" href="https://github.com/pauldewilson/flchangecalcreact">GitHub Repo</Link>
         </Typography>
         <FormInput />
         <hr></hr>
